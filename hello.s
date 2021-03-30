@@ -10,20 +10,12 @@
 #                                                                              #
 # **************************************************************************** #
 
-global _start
+		global _start
 
-section .data
-        ; Align to the nearest 2 byte boundary, must be a power of two
-        align 2
-        ; String, which is just a collection of bytes, 0xA is newline
-        str:     db 'Hello, world!',0xA
-        strLen:  equ $-str
 
-section .bss
 
-section .text
-        _start:
-
+		section .text
+_start:
 ;
 ;       op      dst,  src
 ;
@@ -44,3 +36,9 @@ section .text
         mov     rbx, 0          ; Arg one: the status
         mov     rax, 1          ; Syscall number:
         int     0x80
+
+
+
+        section .data
+str:     db 'Hello, world!',0xA
+strLen:  equ $-str

@@ -26,7 +26,7 @@ CC		=	gcc
 CFLAGS	=	-no-pie
 
 .s.o:
-		nasm -i $(INCL) -o ${<:.s=.o} $<
+		nasm -felf64 -i $(INCL) -o ${<:.s=.o} $<
 
 all:		$(NAME)
 
