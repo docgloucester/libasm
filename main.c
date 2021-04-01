@@ -23,6 +23,6 @@ int main(void)
 	str = "Coucou\n";
 	printf("Size of \"Coucou\\n\" is %d\n", ft_strlen(str));
 	printf("Return value of ft_write(1, \"Coucou\\n\", 7) is %d\n", ft_write(-1, str, 7));
-	perror("Error");
+	perror("The sys_write syscall encountered");
 	return(0);
 }
