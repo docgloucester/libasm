@@ -12,7 +12,7 @@
 
 NAME	=	libasm.a
 
-SRCS	=	ft_strlen.s
+SRCS	=	ft_strlen.s ft_write.s
 SRCS_B	=
 
 INCL	=	./
@@ -22,11 +22,11 @@ MAIN_B	=	main_bonus.c
 OBJS	=	${SRCS:.s=.o}
 OBJS_B	=	$(SRCS:.s=.o) ${SRCS_B:.s=.o}
 
-CC		=	gcc
-CFLAGS	=	-no-pie
+CC		=	/usr/bin/clang
+CFLAGS	=	-Wall -Wextra -Werror
 
 .s.o:
-		nasm -felf64 -i $(INCL) -o ${<:.s=.o} $<
+		nasm -felf64 -g -i $(INCL) -o ${<:.s=.o} $<
 
 all:		$(NAME)
 
@@ -36,11 +36,11 @@ $(NAME):	$(OBJS)
 bonus:		$(OBJS_B)
 		ar -vcrs $(NAME) $(OBJS_B)
 
-test:		$(NAME)
-		gcc $(CFLAGS) $(NAME) $(MAIN) -o test
+test:		$(NAME) $(MAIN)
+		$(CC) $(CFLAGS) $(MAIN) $(NAME) -o test
 
 test_bonus:	$(NAME)
-		gcc $(CFLAGS) $(NAME) $(MAIN_B) -o test_bonus
+		$(CC) $(CFLAGS) $(MAIN_B) $(NAME) -o test_bonus
 
 clean:
 		rm -f *.o
@@ -51,3 +51,25 @@ fclean:		clean
 re:			fclean $(NAME)
 
 .PHONY : all clean fclean
+
+
+#############################
+#	Stack shifting routine	#
+#############################
+# func:
+# 	push	rbp				; Store the current stack frame
+# 	mov		rbp, rsp		; Preserve RSP into RBP for argument references
+# 	and		rsp, 0xfffffff0	; Align the stack to allow SIMD instructions
+# 	mov		rax, [rbp+16]	; Move the contents of RBP+16 into RAX
+# 							; [RBP] should be the saved 64 bit RBP.
+# 							; [RBP+8] should be the 64 bit RIP (return address).
+# 							; [RBP+16] should be the pushed parameter.
+# 	...						; DO COOL STUFF
+# 	mov		rsp, rbp		; Restore the stack and rbp
+# 	pop		rbp
+# 	ret
+
+# main:
+# 	push	0x08
+# 	call	func
+# 	pop		rbx				; Clean up the stack
