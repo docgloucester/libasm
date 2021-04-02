@@ -1,22 +1,22 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    ft_write.s                                         :+:      :+:    :+:    #
+#    ft_read.c                                          :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: rgilles <rgilles@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/04/01 13:53:19 by rgilles           #+#    #+#              #
-#    Updated: 2021/04/01 14:45:48 by rgilles          ###   ########.fr        #
+#    Created: 2021/04/02 18:01:30 by rgilles           #+#    #+#              #
+#    Updated: 2021/04/02 18:04:41 by rgilles          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-global ft_write
+global ft_read
 extern	__errno_location
 
 section .text
 
-ft_write:
-	mov		rax, 4
+ft_read:
+	mov		rax, 3
 	mov		rbx, rdi
 	mov		rcx, rsi ; 3d argument is already in rdx
 	int		80h
@@ -31,4 +31,4 @@ error:
 	mov		[rax], rdx
 	mov		rax, -1
 	ret
-	
+

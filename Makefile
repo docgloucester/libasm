@@ -12,7 +12,7 @@
 
 NAME	=	libasm.a
 
-SRCS	=	ft_strlen.s ft_write.s
+SRCS	=	ft_strlen.s ft_write.s ft_read.s
 SRCS_B	=
 
 INCL	=	./
