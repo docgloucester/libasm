@@ -9,7 +9,8 @@ ft_strcpy:
 loop:
 	cmp		byte [rdi + rbx], 0
 	je		return
-	mov		[rsi + rbx], [rdi + rbx]
+	movzx	rcx, byte [rdi + rbx]
+	mov		[rsi + rbx], rcx
 	add		rbx, 1
 	jmp	loop
 
