@@ -11,21 +11,19 @@
 # **************************************************************************** #
 
 global ft_strcpy
-
 section .text
 
 ft_strcpy:
 	mov		rax, rdi
 
 loop:
-	cmp		byte [rsi], 0
-	je		return
-	mov		al, byte [rsi]
-	mov		[rdi], al
+	mov		bl, byte [rsi]
+	test	bl, bl
+	jz		return
+	mov		byte [rdi], bl
 	inc		rsi
 	inc		rdi
 	jmp		loop
 
 return:
-
 	ret

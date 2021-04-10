@@ -11,6 +11,23 @@
 # **************************************************************************** #
 
 global ft_strdup
+
 section .text
 
+extern malloc
+extern ft_strlen
+extern ft_strcpy
+
 ft_strdup:
+	call 	ft_strlen
+	mov		rbx, rdi
+	mov		rdi, rax
+	inc		rdi
+	call	malloc
+	cmp		rax, 0
+	jz		end
+	mov		rdi, rax
+	mov		rsi, rbx
+	call	ft_strcpy
+end:
+	ret
