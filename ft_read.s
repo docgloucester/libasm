@@ -16,10 +16,10 @@ extern	__errno_location
 section .text
 
 ft_read:
-	mov		rax, 3
+	mov		rax, 0
 	mov		rbx, rdi
 	mov		rcx, rsi ; 3d argument is already in rdx
-	int		80h
+	syscall
 	cmp		rax, 0
 	jl		error
 	ret
@@ -31,4 +31,3 @@ error:
 	mov		[rax], rdx
 	mov		rax, -1
 	ret
-

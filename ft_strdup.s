@@ -29,5 +29,6 @@ ft_strdup:
 	mov		rdi, rax
 	mov		rsi, rbx
 	call	ft_strcpy
+	mov		byte [rdi], 0
 end:
 	ret
