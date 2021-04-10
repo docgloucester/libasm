@@ -19,8 +19,8 @@ extern ft_strlen
 extern ft_strcpy
 
 ft_strdup:
-	call 	ft_strlen
 	mov		rbx, rdi
+	call 	ft_strlen
 	mov		rdi, rax
 	inc		rdi
 	call	malloc

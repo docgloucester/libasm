@@ -23,6 +23,7 @@ char	*ft_strdup(char *orig);
 
 int main(void)
 {
+
 	char	*str;
 	char	*str2;
 	char	*read;
@@ -47,7 +48,7 @@ int main(void)
 	printf("Result of ft_strdup(\"Coucou\\n\") :%s", read);
 	free(read);
 	read = ft_strdup("");
-	printf("Result of ft_strdup(\"\") :%s-----------------\n", read);
+	printf("Result of ft_strdup(\"\") :%s\n-----------------\n", read);
 	free(read);
 
 	printf("Return value of ft_write(1, \"Coucou\\n\", 7) is %d\n", ft_write(1, str, 7));
@@ -60,7 +61,7 @@ int main(void)
 	ft_write(1, "-----------------\n", 18);
 	ft_write(1, "Reading 9 characters from stdin (8 + newline):", 46);
 	ret = ft_read(0, read, 9);
-	printf("\nReturned value is %d and edited buffer is now \"%s\"", ret, read);
+	printf("\nReturned value is %d and edited buffer is now %s", ret, read);
 	perror("The sys_read syscall encountered");
 	ft_write(1, "\nReading from invalid input :", 29);
 	ret = ft_read(-1, read, 5);
