@@ -26,4 +26,5 @@ loop:
 	jmp		loop
 
 return:
+	mov		byte [rdi], 0
 	ret
